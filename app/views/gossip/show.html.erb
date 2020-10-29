@@ -1,0 +1,57 @@
+<html>
+<head>
+  <title>The Gossip Project</title>
+</head>
+<body>
+      <h4>Voici la page du potin n° <%= params[:id] %>
+      </h4>
+        <div class="card text-center">
+            <div class="card-header">
+             Auteur : <%= @gossipfind.user[:first_name] %>
+            </div>
+        <div class="card-body">
+            <h5 class="card-title">Titre : <%= @gossipfind.title %></h5>
+            <p class="card-text">Potin : <%= @gossipfind.content %></p>
+            <br/>
+            <p class="card-text"><br/>Commentaires :<br/> <% @comments.each do |t| %><br/>
+              <%= t.content %> <br/>
+              <%= t.user[:first_name] %> <%= t.user[:last_name] %> 
+              <%= link_to "Modifier", edit_gossip_comment_path(@gossipfind.id, t.id), :class => "btn btn-secondary btn-sm"%> <br/>
+              <%= link_to "Supprimer", gossip_comment_path(@gossipfind.id, t.id), :method => :delete, data: {confirm: "T'es sûr poulet ?"}, :class => "btn btn-secondary"%>
+              </p>
+            <% end %>
+            <%= form_tag gossip_comment_index_path(@gossipfind.id), method: "post" do %>
+      
+               <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+                <%= label_tag 'Nouveau commentaire' %> <br />
+                  <%= text_area_tag 'content', ''%>
+                 <br /> <br />
+
+            <%= submit_tag "Poster Commentaire"%><br /> <br />
+            <% end %>
+        
+
+
+            <%= link_to "Utilisateur", user_path(@gossipfind.user[:id]), :class => "btn btn-secondary"%>
+            <%= link_to "Ville", city_path(@gossipfind.user.city[:id]), :class => "btn btn-secondary"%> <br/> <br/>
+            <%= link_to "Modifier", edit_gossip_path(@gossipfind[:id]), :class => "btn btn-secondary"%> <br/> <br/>
+            <%= button_to "Supprimer", @gossip, :method => :delete, data: {confirm: "T'es sûr poulet ?"}, :class => "btn btn-secondary"%>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+        Créé le : <%= @gossipfind.created_at.strftime('%m/%d/%Y') %> à <%= @gossipfind.created_at.strftime('%T') %> à <%= @gossipfind.user.city[:name] %>
+        </div>
+
+        <% if flash[:notice] %>
+        <div class="alert alert-success">
+        <strong>Bravo !</strong> Ton gossip a bien été posté.
+        </div>
+        <% end %>
+
+        </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<body>
+<h1>Voici la page de la ville <%=@city.name%> </h1>
+
+<div class="row justify-content-center">
+<% @gossips.each do |t| %>
+    <div class="card m-4 col-sm-12 col-md-4 col-lg-3 text-center">
+      <div class="card-body">
+        <h5 class="card-title">
+     Auteur: <%= t.user[:first_name] %><br/><br/>
+        <p class="card-text">
+     Titre: <%= t.title %><br/><br/>
+     <p class="card-text">
+     Potin: <%= t.content %><br/><br/>
+      </div>
+    </div>
+    <% end %>
+    </div>
+    </div>
+    </body>
