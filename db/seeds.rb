@@ -23,6 +23,7 @@ go_tags=[]
 private_messages=[]
 pm_users=[]
 comments=[]
+likes = []
 
 require 'faker'
 
@@ -64,4 +65,9 @@ end
 200.times do
   comment = Comment.create!(content: Faker::Lorem.sentence(word_count:5, supplemental: true, random_words_to_add: 5), user: users.sample, gossip: gossips.sample)
   comments << comment
+end
+
+400.times do
+  like = Like.create!(gossip: gossips.sample, user: users.sample)
+  likes << like
 end

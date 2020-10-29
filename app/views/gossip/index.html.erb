@@ -26,10 +26,12 @@
        <%="#{t.likes.count} "%>
        <% if current_user != nil %>
        <% if get_like(current_user, t) %>
-       <%= link_to "", gossip_like_path(t.id, get_like(current_user, t).id), :method => :delete, :class => "fas fa-thumbs-up"%>
+       <%= link_to "", gossip_like_path(t.id, get_like(current_user, t).id), :method => :delete, :class => "fas fa-thumbs-up fa-lg"%>
        <% else %>
-       <%= link_to "", gossip_likes_path(t.id), :method => :create, :class => "far fa-thumbs-up"%>
+       <%= link_to "", gossip_likes_path(t.id), :method => :create, :class => "far fa-thumbs-up fa-lg"%>
        <% end %>
+       <% else %>
+       <i class = "far fa-thumbs-up fa-lg"></i>
        <% end %>
        </h5>
       </div>

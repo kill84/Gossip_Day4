@@ -44,10 +44,12 @@
             <%="#{@gossipfind.likes.count} "%>
             <% if current_user != nil %>
             <% if get_like(current_user, @gossipfind) %>
-            <%= link_to "", gossip_like_path(@gossipfind.id, get_like(current_user, @gossipfind).id), :method => :delete, :class => "fas fa-thumbs-up"%>
+            <%= link_to "", gossip_like_path(@gossipfind.id, get_like(current_user, @gossipfind).id), :method => :delete, :class => "fas fa-thumbs-up fa-2x"%>
             <% else %>
-            <%= link_to "", gossip_likes_path(@gossipfind.id), :method => :create, :class => "far fa-thumbs-up"%>
+            <%= link_to "", gossip_likes_path(@gossipfind.id), :method => :create, :class => "far fa-thumbs-up fa-2x"%>
             <% end %>
+            <% else %>
+             <i class = "far fa-thumbs-up fa-2x"></i>
             <% end %>
             </div>
         </div>
