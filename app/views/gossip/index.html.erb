@@ -20,13 +20,14 @@
      Auteur: <%= t.user[:first_name] %><br/><br/>
         <p class="card-text">
      Potin: <%= t.title %><br/><br/>
-     <%= link_to "Lien vers le potin", gossip_path(t.id), :class => "btn btn-secondary"%>  </a>
+     <%= link_to "Lien vers le potin", gossip_path(t.id), :class => "btn btn-secondary"%>
+        <br/><br/>
+       <%= link_to "#{t.comments.count} commentaire(s)", gossip_path(t.id), :class => "btn btn-outline-info btn-sm"  %>
        </h5>
       </div>
     </div>
     <% end %>
   </div>
-</div>
 
 
 

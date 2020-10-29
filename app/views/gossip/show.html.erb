@@ -15,13 +15,13 @@
             <br/>
             <p class="card-text"><br/>Commentaires :<br/> <% @comments.each do |t| %><br/>
               <%= t.content %> <br/>
-              <%= t.user[:first_name] %> <%= t.user[:last_name] %> 
+              <%= t.user[:first_name] %> <%= t.user[:last_name] %>
               <%= link_to "Modifier", edit_gossip_comment_path(@gossipfind.id, t.id), :class => "btn btn-secondary btn-sm"%> <br/>
               <%= link_to "Supprimer", gossip_comment_path(@gossipfind.id, t.id), :method => :delete, data: {confirm: "T'es sûr poulet ?"}, :class => "btn btn-secondary"%>
               </p>
             <% end %>
             <%= form_tag gossip_comment_index_path(@gossipfind.id), method: "post" do %>
-      
+
                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
                 <%= label_tag 'Nouveau commentaire' %> <br />
@@ -30,7 +30,7 @@
 
             <%= submit_tag "Poster Commentaire"%><br /> <br />
             <% end %>
-        
+
 
 
             <%= link_to "Utilisateur", user_path(@gossipfind.user[:id]), :class => "btn btn-secondary"%>
@@ -46,9 +46,7 @@
         <% if flash[:notice] %>
         <div class="alert alert-success">
         <strong>Bravo !</strong> Ton gossip a bien été posté.
-        </div>
         <% end %>
-
         </div>
 
 

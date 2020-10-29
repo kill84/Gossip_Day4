@@ -32,7 +32,7 @@ require 'faker'
 end
 
 50.times do
-  user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Lorem.sentence(word_count:5, supplemental: false, random_words_to_add: 5), email: Faker::Internet.email, age: rand(7..99), city: cities.sample, password_digest: Faker::characters(number:6..15))
+  user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Lorem.sentence(word_count:5, supplemental: false, random_words_to_add: 5), email: Faker::Internet.email, age: rand(7..99), city: cities.sample, password_digest: Faker::Lorem.characters(number:6..15))
   users << user
 end
 
