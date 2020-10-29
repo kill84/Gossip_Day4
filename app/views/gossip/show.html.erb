@@ -14,18 +14,20 @@
             <p class="card-text">Potin : <%= @gossipfind.content %></p>
             <br/>
             <p class="card-text"><br/>Commentaires :<br/> <% @comments.each do |t| %><br/>
+              <%= t.user[:first_name] %> <%= t.user[:last_name] %><br/>
               <%= t.content %> <br/>
-              <%= t.user[:first_name] %> <%= t.user[:last_name] %>
-              <%= link_to "Modifier", edit_gossip_comment_path(@gossipfind.id, t.id), :class => "btn btn-secondary btn-sm"%> <br/>
-              <%= link_to "Supprimer", gossip_comment_path(@gossipfind.id, t.id), :method => :delete, data: {confirm: "T'es sûr poulet ?"}, :class => "btn btn-secondary"%>
+            <% if session[:user_id] == t.user[:id] %>
+              <%= link_to "Modifier", edit_gossip_comment_path(@gossipfind.id, t.id), :class => "btn btn-secondary btn-sm"%>
+              <%= link_to "Supprimer", gossip_comment_path(@gossipfind.id, t.id), :method => :delete, data: {confirm: "T'es sûr poulet ?"}, :class => "btn btn-secondary btn-sm"%>
               </p>
+            <% end %>
             <% end %>
             <%= form_tag gossip_comment_index_path(@gossipfind.id), method: "post" do %>
 
                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
                 <%= label_tag 'Nouveau commentaire' %> <br />
-                  <%= text_area_tag 'content', ''%>
+                  <%= text_area_tag 'content'%>
                  <br /> <br />
 
             <%= submit_tag "Poster Commentaire"%><br /> <br />
@@ -35,8 +37,18 @@
 
             <%= link_to "Utilisateur", user_path(@gossipfind.user[:id]), :class => "btn btn-secondary"%>
             <%= link_to "Ville", city_path(@gossipfind.user.city[:id]), :class => "btn btn-secondary"%> <br/> <br/>
+          <% if session[:user_id] == @gossipfind.user_id %>
             <%= link_to "Modifier", edit_gossip_path(@gossipfind[:id]), :class => "btn btn-secondary"%> <br/> <br/>
-            <%= button_to "Supprimer", @gossip, :method => :delete, data: {confirm: "T'es sûr poulet ?"}, :class => "btn btn-secondary"%>
+            <%= button_to "Supprimer", @gossip, :method => :delete, data: {confirm: "T'es sûr poulet ?"}, :class => "btn btn-secondary"%> <br/> <br/>
+          <% end %>
+            <%="#{@gossipfind.likes.count} "%>
+            <% if current_user != nil %>
+            <% if get_like(current_user, @gossipfind) %>
+            <%= link_to "", gossip_like_path(@gossipfind.id, get_like(current_user, @gossipfind).id), :method => :delete, :class => "fas fa-thumbs-up"%>
+            <% else %>
+            <%= link_to "", gossip_likes_path(@gossipfind.id), :method => :create, :class => "far fa-thumbs-up"%>
+            <% end %>
+            <% end %>
             </div>
         </div>
         <div class="card-footer text-muted">

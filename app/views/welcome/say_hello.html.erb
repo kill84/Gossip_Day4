@@ -5,7 +5,20 @@
 </head>
 
 <body>
-<h1>  Bienvenue <%= params["id"]%> </h1>
+<h1>  Bienvenue <%= @user.first_name%> </h1>
 <h3>Ici c'est notre super site de potins, il est chouette, non ? </h3>
+
+<% if flash[:notice] %>
+<div class="alert alert-success">
+<strong>Bravo !</strong> Ton profil a bien été créé.
+<% end %>
+
+<% if flash[:alert] %>
+<div class="alert alert-success">
+<strong>Bienvenue !</strong> Fais comme chez toi fry.
+<% end %>
+
+</div>
+
 </body>
 </html>

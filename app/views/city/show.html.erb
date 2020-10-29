@@ -12,8 +12,16 @@
      <p class="card-text">
      Potin: <%= t.content %><br/><br/>
       </div>
-    </div>
+      <%= link_to "#{t.comments.count} commentaire(s)", gossip_path(t.id), :class => "btn btn-outline-info btn-sm"  %>
+      <%="#{t.likes.count} "%>
+      <% if current_user != nil %>
+      <% if get_like(current_user, t) %>
+      <%= link_to "", gossip_like_path(t.id, get_like(current_user, t).id), :method => :delete, :class => "fas fa-thumbs-up"%>
+      <% else %>
+      <%= link_to "", gossip_likes_path(t.id), :method => :create, :class => "far fa-thumbs-up"%>
+      <% end %>
+      <% end %>
+        </div>
     <% end %>
-    </div>
     </div>
     </body>

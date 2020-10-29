@@ -17,7 +17,8 @@ class User < ApplicationRecord
     has_many :received_messages, class_name: "PrivateMessage", through: :pm_users
     has_many :comments
     has_secure_password
-    validates :password_digest,
+    validates :password,
     presence: true,
-    length: {in:6..15}
+    length: { minimum: 6 }
+    has_many :likes
 end

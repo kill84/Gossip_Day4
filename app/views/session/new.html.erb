@@ -1,7 +1,4 @@
 <html>
-    <head>
-      <title>The Gossip Project</title>
-    </head>
   <body>
     <!-- ... -->
     <div class="card text-center">
@@ -9,26 +6,26 @@
 
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
       <div class="card-header">
-      Balance quelque chose de croustillant
+      Connecte-toi ici mon gâté
      </div>
      <div class="card-body">
 
-      <%= label_tag 'Title' %> <br />
-      <%= text_field_tag 'title', @gossip.title %>
+      <%= label_tag 'Addresse email' %> <br />
+      <%= text_field_tag 'email' %>
       <br /> <br />
 
-      <%= label_tag 'Content' %> <br />
-      <%= text_area_tag 'content', @gossip.content %>
+      <%= label_tag 'Mot de passe' %> <br />
+      <%= text_field_tag 'password' %>
       <br /> <br />
 
-      <%= submit_tag "Create Gossip"%><br /> <br />
+      <%= submit_tag "Login"%><br /> <br />
     </div>
+
       <% if flash[:alert] %>
       <div class="alert alert-danger">
-      <strong>Attention !</strong> Ton gossip n'a pas été posté.
+      <strong>Attention !</strong> Mauvais email/mot de passe
       </div>
       <% end %>
-
 
     <% end %>
 
