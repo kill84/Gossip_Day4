@@ -18,7 +18,12 @@
       <%= password_field_tag 'password' %>
       <br /> <br />
 
-      <%= submit_tag "Login"%><br /> <br />
+      <%= submit_tag "Login"%>
+        <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for= "pour_casser_les_couilles" >Remember me</label>
+        </div>
+      <br /> <br />
     </div>
 
       <% if flash[:alert] %>

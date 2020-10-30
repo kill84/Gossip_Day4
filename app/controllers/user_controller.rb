@@ -14,12 +14,12 @@ class UserController < ApplicationController
   end
 
   def create
-    @user = User.create('first_name' => params[:first_name], 'last_name' => params[:last_name], 'description' => params[:description], 'email' => params[:email], 'password' => params[:password], 'age' => params[:age], 'city_id' => params[:city_id])
+    @user = User.new('first_name' => params[:first_name], 'last_name' => params[:last_name], 'description' => params[:description], 'email' => params[:email], 'password' => params[:password], 'age' => params[:age], 'city_id' => params[:city_id])
 
     if @user.save
-    session[:user_id] = @user.id
-    redirect_to welcome_path(@user.id)
-    flash[:notice]= "Post successfully created"
+      log_in(@user)
+      redirect_to welcome_path(@user.id)
+      flash[:notice]= "Post successfully created"
     else
       flash[:alert] = "Post aborted"
       render 'new'

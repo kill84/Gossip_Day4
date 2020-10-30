@@ -18,8 +18,7 @@ class CommentController < ApplicationController
         if id == nil
           redirect_to new_session_path
         else
-        @current_user = User.find(id)
-        @comment = Comment.create('content'=> params[:content], 'user_id' => @current_user.id, 'gossip_id' => params[:gossip_id])
+        @comment = Comment.create('content'=> params[:content], 'user_id' => current_user.id, 'gossip_id' => params[:gossip_id])
 
         if @comment.save
         redirect_to gossip_path(@comment.gossip.id)

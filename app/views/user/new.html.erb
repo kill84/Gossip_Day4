@@ -35,11 +35,17 @@
       <br /> <br />
 
       <%= label_tag 'Ville' %> <br />
-      <%= text_field_tag 'city_id', @user.city_id %>
+      <%= select_tag 'city_id', options_from_collection_for_select(City.all, "id", "name")%>
       <br /> <br />
 
-      <%= submit_tag "Create User"%><br /> <br />
+      <%= submit_tag "Create User"%>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for= "casser_les_couilles" > Remember me</label>
+      </div>
+      <br /> <br />
     </div>
+      <% end %>
       <% if flash[:alert] %>
       <div class="alert alert-danger">
       <strong>Attention !</strong> Ton utilisateur n'a pas été posté.
@@ -47,7 +53,7 @@
       <% end %>
 
 
-    <% end %>
+
 
     <div class="card-footer text-muted">
     </div>

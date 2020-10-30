@@ -3,17 +3,20 @@
   <title>The Gossip Project</title>
 </head>
 <body>
-      <h4>Voici la page de l'utilisateur <%= params[:id] %>      </h4>
-      <p1>
-      Prénom : <%= @userfind.first_name %><br/>
-      Nom : <%= @userfind.last_name %> <br/>
+
+  <div class="card text-center">
+      <div class="card-header">
+       Voici la page de ce bougre de <%= @userfind.first_name %> <%= @userfind.last_name %>
+      </div>
+  <div class="card-body">
       Description : <%= @userfind.description %> <br/>
       Adresse email : <%= @userfind.email %> <br/>
       Âge : <%= @userfind.age %> <br/>
       Habite à : <%= @userfind.city[:name] %> <br/>
-      <%= link_to "Lien vers la ville", city_path(@userfind.city[:id]), :class => "btn btn-secondary"%>  </a>
-      </p1>
-
+      </div>
+  </div>
+  <div class="card-footer text-muted">
+  </div>
 
 </body>
 </html>

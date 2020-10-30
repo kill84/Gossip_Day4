@@ -16,14 +16,14 @@ class GossipController < ApplicationController
   end
 
   def create
+    
     id = session[:user_id]
     if id == nil
       redirect_to new_session_path
+
     else
 
-    current_user = User.find(id)
     @gossip = Gossip.create('title' => params[:title], 'content'=> params[:content], 'user_id' => current_user.id)
-
 
     if @gossip.save
     redirect_to gossip_path(@gossip.id)

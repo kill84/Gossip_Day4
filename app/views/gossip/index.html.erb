@@ -24,7 +24,7 @@
         <br/><br/>
        <%= link_to "#{t.comments.count} commentaire(s)", gossip_path(t.id), :class => "btn btn-outline-info btn-sm"  %><br/><br/>
        <%="#{t.likes.count} "%>
-       <% if current_user != nil %>
+       <% if current_user %>
        <% if get_like(current_user, t) %>
        <%= link_to "", gossip_like_path(t.id, get_like(current_user, t).id), :method => :delete, :class => "fas fa-thumbs-up fa-lg"%>
        <% else %>

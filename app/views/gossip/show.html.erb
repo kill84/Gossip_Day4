@@ -33,16 +33,14 @@
             <%= submit_tag "Poster Commentaire"%><br /> <br />
             <% end %>
 
-
-
             <%= link_to "Utilisateur", user_path(@gossipfind.user[:id]), :class => "btn btn-secondary"%>
             <%= link_to "Ville", city_path(@gossipfind.user.city[:id]), :class => "btn btn-secondary"%> <br/> <br/>
-          <% if session[:user_id] == @gossipfind.user_id %>
+          <% if current_user.id == @gossipfind.user_id %>
             <%= link_to "Modifier", edit_gossip_path(@gossipfind[:id]), :class => "btn btn-secondary"%> <br/> <br/>
             <%= button_to "Supprimer", @gossip, :method => :delete, data: {confirm: "T'es sûr poulet ?"}, :class => "btn btn-secondary"%> <br/> <br/>
           <% end %>
             <%="#{@gossipfind.likes.count} "%>
-            <% if current_user != nil %>
+            <% if current_user %>
             <% if get_like(current_user, @gossipfind) %>
             <%= link_to "", gossip_like_path(@gossipfind.id, get_like(current_user, @gossipfind).id), :method => :delete, :class => "fas fa-thumbs-up fa-2x"%>
             <% else %>
@@ -54,7 +52,7 @@
             </div>
         </div>
         <div class="card-footer text-muted">
-        Créé le : <%= @gossipfind.created_at.strftime('%m/%d/%Y') %> à <%= @gossipfind.created_at.strftime('%T') %> à <%= @gossipfind.user.city[:name] %>
+        Créé le : <%= @gossipfind.created_at.strftime('%d/%m/%Y') %> à <%= @gossipfind.created_at.strftime('%T') %> à <%= @gossipfind.user.city[:name] %>
         </div>
 
         <% if flash[:notice] %>
@@ -62,7 +60,6 @@
         <strong>Bravo !</strong> Ton gossip a bien été posté.
         <% end %>
         </div>
-
 
 
 </body>

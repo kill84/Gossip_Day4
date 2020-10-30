@@ -37,7 +37,7 @@
         <li class="nav-item">
         <%= link_to "Contact", contact_path, :class =>"nav-link" %>
         </li>
-    <% if session[:user_id] == nil %>
+    <% unless current_user %>
     <div class="dropdown">
   <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     S'inscrire / Se connecter

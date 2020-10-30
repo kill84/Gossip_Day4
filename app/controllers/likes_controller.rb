@@ -7,27 +7,25 @@ before_action :authenticate_user
 
   def create
       id = session[:user_id]
-      current_user = User.find(id)
       @like = Like.create('gossip_id'=> params[:gossip_id], 'user_id' => current_user.id)
 
       if @like.save
-      redirect_to gossip_path(@like.gossip.id)
+      redirect_back(fallback_location: root_path)
       else
-        redirect_to gossip_path(@like.gossip.id)
+        redirect_back(fallback_location: root_path)
       end
   end
 
   def destroy
     @like = Like.find(params[:id])
     @like.destroy
-    redirect_to gossip_path(params[:gossip_id])
+    redirect_back(fallback_location: root_path)
   end
 
     private
 
   def authenticate_user
     id = session[:user_id]
-    current_user = User.find(id)
     unless current_user
       flash[:danger] = "Please log in"
       redirect_to new_session_path

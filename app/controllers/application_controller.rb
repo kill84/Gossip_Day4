@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
+include SessionHelper
+include ApplicationHelper
 
-  def current_user
-
-  end
 
 end
